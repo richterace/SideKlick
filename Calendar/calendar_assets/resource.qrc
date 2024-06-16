@@ -1,0 +1,7 @@
+<RCC>
+  <qresource>
+    <file>Your paragraph text.png</file>
+    <file>AddButton.png</file>
+    <file>Back Button.png</file>
+  </qresource>
+</RCC>

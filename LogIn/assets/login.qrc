@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>bglogin.png</file>
+    <file>bgsign.png</file>
+    <file>eye 1.png</file>
+    <file>image 18.png</file>
+  </qresource>
+</RCC>

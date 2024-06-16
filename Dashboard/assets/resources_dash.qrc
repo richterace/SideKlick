@@ -1,0 +1,36 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>ghjkjk.jpeg</file>
+    <file>Group 255.png</file>
+    <file>Profile.png</file>
+    <file>features.png</file>
+    <file>Group 250.png</file>
+    <file>Group 251.png</file>
+    <file>Group 252.png</file>
+    <file>Group 242.png</file>
+    <file>kare.jpg</file>
+    <file>pancit-canton.jpg</file>
+    <file>AddButton.png</file>
+    <file>Back Button.png</file>
+    <file>bgbelow.png</file>
+    <file>Ellipse 1.png</file>
+    <file>Ellipse 2.png</file>
+    <file>Ellipse 13.png</file>
+    <file>Group 66.png</file>
+    <file>Group 70.png</file>
+    <file>Calendar.png</file>
+    <file>Group 100.png</file>
+    <file>Group 101.png</file>
+    <file>Group 102.png</file>
+    <file>Group 103.png</file>
+    <file>Group 104.png</file>
+    <file>image 4.png</file>
+    <file>image 18.png</file>
+    <file>Rectangle 59.png</file>
+    <file>Rectangle 66.png</file>
+    <file>resources_dash.py</file>
+    <file>setting (1) 1.png</file>
+    <file>Subtract.png</file>
+    <file>user (1) 1.png</file>
+  </qresource>
+</RCC>
