@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="background">
+    <file>images/Grocery.png</file>
+    <file>images/grocerybackground.png</file>
+  </qresource>
+  <qresource prefix="buttons">
+    <file>images/delete.png</file>
+    <file>images/ADD.png</file>
+    <file>images/addbutton.png</file>
+  </qresource>
+</RCC>

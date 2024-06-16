@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="background">
+    <file>waterimg/recobg.png</file>
+    <file>waterimg/weatherbg.png</file>
+    <file>waterimg/weightbg.png</file>
+    <file>waterimg/sexbg.png</file>
+    <file>waterimg/text.png</file>
+    <file>waterimg/water.gif</file>
+    <file>waterimg/waterbg.png</file>
+  </qresource>
+  <qresource prefix="icons">
+    <file>waterimg/weathericon.png</file>
+    <file>waterimg/Female.png</file>
+    <file>waterimg/Male.png</file>
+  </qresource>
+  <qresource prefix="buttons">
+    <file>waterimg/back.png</file>
+    <file>waterimg/drinkbutton.png</file>
+  </qresource>
+</RCC>

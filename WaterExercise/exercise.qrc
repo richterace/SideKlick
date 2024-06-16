@@ -1,0 +1,67 @@
+<RCC>
+  <qresource prefix="background">
+    <file>exerciseimg/allflexible.png</file>
+    <file>exerciseimg/allintensity.png</file>
+    <file>exerciseimg/allstrength.png</file>
+    <file>exerciseimg/exercisebg3.png</file>
+    <file>exerciseimg/exercisebg4.png</file>
+    <file>exerciseimg/exercisebg5.png</file>
+    <file>exerciseimg/exercisebg2.png</file>
+    <file>exerciseimg/allclassic.png</file>
+    <file>exerciseimg/allcardio.png</file>
+    <file>exerciseimg/arrow.png</file>
+    <file>exerciseimg/cardioheading.png</file>
+    <file>exerciseimg/headerbg.png</file>
+    <file>exerciseimg/1.png</file>
+    <file>exerciseimg/2.png</file>
+    <file>exerciseimg/3.png</file>
+    <file>exerciseimg/duration.png</file>
+    <file>exerciseimg/exercisebg.png</file>
+    <file>exerciseimg/repitition.png</file>
+    <file>exerciseimg/resettime.png</file>
+  </qresource>
+  <qresource prefix="exercise">
+    <file>exerciseimg/flexible1.png</file>
+    <file>exerciseimg/flexible2.png</file>
+    <file>exerciseimg/flexible3.png</file>
+    <file>exerciseimg/flexible4.png</file>
+    <file>exerciseimg/flexible5.png</file>
+    <file>exerciseimg/intensity1.png</file>
+    <file>exerciseimg/intensity2.png</file>
+    <file>exerciseimg/intensity3.png</file>
+    <file>exerciseimg/intensity4.png</file>
+    <file>exerciseimg/intensity5.png</file>
+    <file>exerciseimg/strength1.png</file>
+    <file>exerciseimg/strength2.png</file>
+    <file>exerciseimg/strength3.png</file>
+    <file>exerciseimg/strength4.png</file>
+    <file>exerciseimg/strength5.png</file>
+    <file>exerciseimg/classic1.png</file>
+    <file>exerciseimg/classic2.png</file>
+    <file>exerciseimg/classic3.png</file>
+    <file>exerciseimg/classic4.png</file>
+    <file>exerciseimg/classic5.png</file>
+    <file>exerciseimg/1.png</file>
+    <file>exerciseimg/2.png</file>
+    <file>exerciseimg/3.png</file>
+    <file>exerciseimg/a1.png</file>
+    <file>exerciseimg/a2.png</file>
+    <file>exerciseimg/a3.png</file>
+    <file>exerciseimg/a4.png</file>
+    <file>exerciseimg/a5.png</file>
+    <file>exerciseimg/cardio1.png</file>
+    <file>exerciseimg/cardio2.png</file>
+    <file>exerciseimg/cardio3.png</file>
+    <file>exerciseimg/cardio4.png</file>
+    <file>exerciseimg/cardio5.png</file>
+  </qresource>
+  <qresource prefix="buttons">
+    <file>waterimg/back.png</file>
+    <file>exerciseimg/a1.png</file>
+    <file>exerciseimg/a2.png</file>
+    <file>exerciseimg/a3.png</file>
+    <file>exerciseimg/a4.png</file>
+    <file>exerciseimg/a5.png</file>
+    <file>exerciseimg/start.png</file>
+  </qresource>
+</RCC>
