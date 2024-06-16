@@ -1,0 +1,32 @@
+CREATE DATABASE IF NOT EXISTS health;
+
+USE health;
+
+-- Create User Info Table
+CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    -- Add other user information fields as needed
+    UNIQUE (username)
+);
+
+-- Create Recipes Table
+CREATE TABLE IF NOT EXISTS recipes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    ingredients TEXT NOT NULL,
+    procedures TEXT NOT NULL,
+    photo_path VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS taskdb (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    task VARCHAR(255) NOT NULL,
+    completed TEXT NOT NULL,
+    date TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
