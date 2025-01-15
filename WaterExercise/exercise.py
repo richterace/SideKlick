@@ -19,6 +19,163 @@ class UIexercise(QMainWindow):
         ui_file.open(QFile.ReadOnly)
         uic.loadUi(ui_file, self)  # Load the UI file directly into the QMainWindow
         ui_file.close()
+        
+        # Buttons Widgets
+        self.waterbutton = self.findChild(QPushButton, "waterButton")
+        self.a1 = self.findChild(QPushButton, "a1")
+        self.a2 = self.findChild(QPushButton, "a2")
+        self.a3 = self.findChild(QPushButton, "a3")
+        self.a4 = self.findChild(QPushButton, "a4")
+        self.a5 = self.findChild(QPushButton, "a5")
+        self.start = self.findChild(QPushButton, "start")
+        self.start_2 = self.findChild(QPushButton, "start_2")
+        self.start_3 = self.findChild(QPushButton, "start_3")
+        self.start_4 = self.findChild(QPushButton, "start_4")
+        self.start_5 = self.findChild(QPushButton, "start_5")
+        
+        self.back2main = self.findChild(QPushButton, "back2main")
+        self.back2main_2 = self.findChild(QPushButton, "back2main_2")
+        self.back2main_3 = self.findChild(QPushButton, "back2main_3")
+        self.back2main_4 = self.findChild(QPushButton, "back2main_4")
+        self.back2main_5 = self.findChild(QPushButton, "back2main_5")
+        
+        self.cardioduration = self.findChild(QPushButton, "cardioduration")
+        self.cardiorepitition = self.findChild(QPushButton, "cardiorepitition")
+        self.cardioresttime = self.findChild(QPushButton, "cardioresttime")
+        
+        self.classicduration = self.findChild(QPushButton, "classicduration")
+        self.classicrepitition = self.findChild(QPushButton, "classicrepitition")
+        self.classicresttime = self.findChild(QPushButton, "classicresttime")
+        
+        self.strengthduration = self.findChild(QPushButton, "strengthduration")
+        self.strengthrepitition = self.findChild(QPushButton, "strengthrepitition")
+        self.strengthresttime = self.findChild(QPushButton, "strengthresttime")
+        
+        self.flexibleduration = self.findChild(QPushButton, "flexibleduration")
+        self.flexiblerepitition = self.findChild(QPushButton, "flexiblerepitition")
+        self.flexibleresttime = self.findChild(QPushButton, "flexibleresttime")
+        
+        self.intensityduration = self.findChild(QPushButton, "intensityduration")
+        self.intensityrepitition = self.findChild(QPushButton, "intensityrepitition")
+        self.intensityresttime = self.findChild(QPushButton, "intensityresttime")
+        
+        self.durationback = self.findChild(QPushButton, "durationback")
+        self.durationback_2 = self.findChild(QPushButton, "durationback_2")
+        self.durationback_3 = self.findChild(QPushButton, "durationback_3")
+        self.durationback_4 = self.findChild(QPushButton, "durationback_4")
+        self.durationback_5 = self.findChild(QPushButton, "durationback_5")
+        self.backButton = self.findChild(QPushButton, "backButton")
+        
+        self.time1 = self.findChild(QPushButton, "time1")
+        self.time2 = self.findChild(QPushButton, "time2")
+        self.time3 = self.findChild(QPushButton, "time3")
+        self.time4 = self.findChild(QPushButton, "time4")
+        self.time5 = self.findChild(QPushButton, "time5")
+        self.savetime = self.findChild(QPushButton, "savetime")
+        
+        self.repeat1 = self.findChild(QPushButton, "repeat1")
+        self.repeat2 = self.findChild(QPushButton, "repeat2")
+        self.repeat3 = self.findChild(QPushButton, "repeat3")
+        self.repeat4 = self.findChild(QPushButton, "repeat4")
+        self.repeat5 = self.findChild(QPushButton, "repeat5")
+        self.saverepetition = self.findChild(QPushButton, "saverepetition")
+        
+        self.rest1 = self.findChild(QPushButton, "rest1")
+        self.rest2 = self.findChild(QPushButton, "rest2")
+        self.rest3 = self.findChild(QPushButton, "rest3")
+        self.rest4 = self.findChild(QPushButton, "rest4")
+        self.rest5 = self.findChild(QPushButton, "rest5")
+        self.saverest = self.findChild(QPushButton, "saverest")
+        
+        self.labelduration1 = self.findChild(QLabel, "labelduration1")
+        self.labelduration1_2 = self.findChild(QLabel, "labelduration1_2")
+        self.labelduration1_3 = self.findChild(QLabel, "labelduration1_3")
+        self.labelduration1_4 = self.findChild(QLabel, "labelduration1_4")
+        self.labelduration1_5 = self.findChild(QLabel, "labelduration1_5")
+        
+        self.classiclabelduration1 = self.findChild(QLabel, "classiclabelduration1")
+        self.classiclabelduration1_2 = self.findChild(QLabel, "classiclabelduration1_2")
+        self.classiclabelduration1_3 = self.findChild(QLabel, "classiclabelduration1_3")
+        self.classiclabelduration1_4 = self.findChild(QLabel, "classiclabelduration1_4")
+        self.classiclabelduration1_5 = self.findChild(QLabel, "classiclabelduration1_5")
+        
+        self.strengthlabelduration1 = self.findChild(QLabel, "strengthlabelduration1")
+        self.strengthlabelduration1_2 = self.findChild(QLabel, "strengthlabelduration1_2")
+        self.strengthlabelduration1_3 = self.findChild(QLabel, "strengthlabelduration1_3")
+        self.strengthlabelduration1_4 = self.findChild(QLabel, "strengthlabelduration1_4")
+        self.strengthlabelduration1_5 = self.findChild(QLabel, "strengthlabelduration1_5")
+        
+        self.flexiblelabelduration1 = self.findChild(QLabel, "flexiblelabelduration1")
+        self.flexiblelabelduration1_2 = self.findChild(QLabel, "flexiblelabelduration1_2")
+        self.flexiblelabelduration1_3 = self.findChild(QLabel, "flexiblelabelduration1_3")
+        self.flexiblelabelduration1_4 = self.findChild(QLabel, "flexiblelabelduration1_4")
+        self.flexiblelabelduration1_5 = self.findChild(QLabel, "flexiblelabelduration1_5")
+        
+        self.intensitylabelduration1 = self.findChild(QLabel, "intensitylabelduration1")
+        self.intensitylabelduration1_2 = self.findChild(QLabel, "intensitylabelduration1_2")
+        self.intensitylabelduration1_3 = self.findChild(QLabel, "intensitylabelduration1_3")
+        self.intensitylabelduration1_4 = self.findChild(QLabel, "intensitylabelduration1_4")
+        self.intensitylabelduration1_5 = self.findChild(QLabel, "intensitylabelduration1_5")
+        
+        self.labelrest = self.findChild(QLabel, "labelrest")
+        self.labelrest_2 = self.findChild(QLabel, "labelrest_2")
+        self.labelrest_3 = self.findChild(QLabel, "labelrest_3")
+        self.labelrest_4 = self.findChild(QLabel, "labelrest_4")
+        
+        self.strengthlabelrest = self.findChild(QLabel, "strengthlabelrest")
+        self.strengthlabelrest_2 = self.findChild(QLabel, "strengthlabelrest_2")
+        self.strengthlabelrest_3 = self.findChild(QLabel, "strengthlabelrest_3")
+        self.strengthlabelrest_4 = self.findChild(QLabel, "strengthlabelrest_4")
+        
+        self.classiclabelrest = self.findChild(QLabel, "classiclabelrest")
+        self.classiclabelrest_2 = self.findChild(QLabel, "classiclabelrest_2")
+        self.classiclabelrest_3 = self.findChild(QLabel, "classiclabelrest_3")
+        self.classiclabelrest_4 = self.findChild(QLabel, "classiclabelrest_4")
+        
+        self.flexiblelabelrest = self.findChild(QLabel, "flexiblelabelrest")
+        self.flexiblelabelrest_2 = self.findChild(QLabel, "flexiblelabelrest_2")
+        self.flexiblelabelrest_3 = self.findChild(QLabel, "flexiblelabelrest_3")
+        self.flexiblelabelrest_4 = self.findChild(QLabel, "flexiblelabelrest_4")
+        
+        self.intensitylabelrest = self.findChild(QLabel, "intensitylabelrest")
+        self.intensitylabelrest_2 = self.findChild(QLabel, "intensitylabelrest_2")
+        self.intensitylabelrest_3 = self.findChild(QLabel, "intensitylabelrest_3")
+        self.intensitylabelrest_4 = self.findChild(QLabel, "intensitylabelrest_4")
+        
+        # Label Widgets
+        self.c3 = self.findChild(QLabel, "c3_2")
+        self.headerbg = self.findChild(QLabel, "headerbg")
+        self.headerbg_2 = self.findChild(QLabel, "headerbg_2")
+        self.headerbg_3 = self.findChild(QLabel, "headerbg_3")
+        self.countnum = self.findChild(QLabel, "countnum")
+        self.restcount = self.findChild(QLabel, "restcount")
+        
+        self.cardioshow = self.findChild(QLabel, "cardioshow")
+        self.cardiopreview = self.findChild(QLabel, "cardiopreview")
+        self.cardiopreview3 = self.findChild(QLabel, "cardiopreview_3")
+        self.cardiopreview2 = self.findChild(QLabel, "cardiopreview_2")
+        
+        
+        self.repeatbg = self.findChild(QLabel, "repeatbg")
+        self.durationbg = self.findChild(QLabel, "durationbg")
+        self.resettimebg = self.findChild(QLabel, "resettimebg")
+ 
+        # Stacked Widgets
+        self.exercisestackedWidget = self.findChild(QStackedWidget, "exercisestackedWidget")
+        self.exercisemain = self.findChild(QWidget, "exercisemain")
+        self.cardio = self.findChild(QWidget, "cardio")
+        self.cardioexercise = self.findChild(QWidget, "cardioexercise")
+        self.classic = self.findChild(QWidget, "classic")
+        self.flexible = self.findChild(QWidget, "flexible")
+        self.strength = self.findChild(QWidget, "strength")
+        self.intensity = self.findChild(QWidget, "intensity")
+        self.classicexercise = self.findChild(QWidget, "classicexercise")
+        self.centralWidget1 = self.findChild(QWidget, "centralWidget")
+        
+        self.repeat = self.findChild(QWidget, "repeat")
+        self.duration = self.findChild(QWidget, "duration")
+        self.resettime = self.findChild(QWidget, "resettime")
+        self.count = self.findChild(QWidget, "count")
       
         # Media player for playing the sound
         mp3_1 = os.path.join(os.path.dirname(__file__),"exerciseimg/music.mp3")
@@ -48,6 +205,8 @@ class UIexercise(QMainWindow):
         # Counter for the animation
         self.counter = 0
         
+   
+        
         # Define the list of image paths
         self.cardio_images = [
             os.path.join(os.path.dirname(__file__),"exerciseimg/cardio1.png"),
@@ -57,7 +216,6 @@ class UIexercise(QMainWindow):
             os.path.join(os.path.dirname(__file__),"exerciseimg/cardio5.png")
         ]
         
-        # Define the list of image paths
         self.classic_images = [
             os.path.join(os.path.dirname(__file__),"exerciseimg/classic1.png"),
             os.path.join(os.path.dirname(__file__),"exerciseimg/classic2.png"),
@@ -66,7 +224,6 @@ class UIexercise(QMainWindow):
             os.path.join(os.path.dirname(__file__),"exerciseimg/classic5.png")
         ]
         
-        # Define the list of image paths
         self.strength_images = [
             os.path.join(os.path.dirname(__file__),"exerciseimg/strength1.png"),
             os.path.join(os.path.dirname(__file__),"exerciseimg/strength2.png"),
@@ -75,7 +232,6 @@ class UIexercise(QMainWindow):
             os.path.join(os.path.dirname(__file__),"exerciseimg/strength5.png")
         ]
         
-        # Define the list of image paths
         self.flexible_images = [
             os.path.join(os.path.dirname(__file__),"exerciseimg/flexible1.png"),
             os.path.join(os.path.dirname(__file__),"exerciseimg/flexible2.png"),
@@ -84,7 +240,6 @@ class UIexercise(QMainWindow):
             os.path.join(os.path.dirname(__file__),"exerciseimg/flexible5.png")
         ]
         
-        # Define the list of image paths
         self.intensity_images = [
             os.path.join(os.path.dirname(__file__),"exerciseimg/intensity1.png"),
             os.path.join(os.path.dirname(__file__),"exerciseimg/intensity2.png"),
@@ -92,6 +247,8 @@ class UIexercise(QMainWindow):
             os.path.join(os.path.dirname(__file__),"exerciseimg/intensity4.png"),
             os.path.join(os.path.dirname(__file__),"exerciseimg/intensity5.png")
         ]
+        
+        
         
         self.current_image_index = 0  # Initialize the current image index
         
@@ -231,7 +388,9 @@ class UIexercise(QMainWindow):
     def switch_to_intensity(self):
         self.exercisestackedWidget.setCurrentWidget(self.exercisestackedWidget.findChild(QWidget, "intensity"))
 
-    # function to show the labels
+
+        
+  
     def show_labels(self):
         self.count.raise_()
         # Stop the timer if it's running
@@ -280,7 +439,6 @@ class UIexercise(QMainWindow):
         # Start the timer
         self.timer.start()
 
-    # update the certain label 
     def update_c3_label(self):
         count = int(self.c3_2.text())
         if count > 1:
@@ -291,7 +449,6 @@ class UIexercise(QMainWindow):
             # Proceed to the cardio_exercise method
             self.cardio_exercise()
 
-    # function for cardio exercise
     def cardio_exercise(self):   
             self.exercisestackedWidget.setCurrentWidget(self.cardioexercise)
             self.exercisestackedWidget.raise_()
@@ -299,8 +456,7 @@ class UIexercise(QMainWindow):
             self.countdown_timer.setInterval(1000)  # 1 second interval
             self.countdown_timer.timeout.connect(self.update_countdown)
             self.countdown_timer.start()
-    
-    #function to update countdown
+            
     def update_countdown(self):
         try:           
             if self.is_resting:
@@ -331,7 +487,6 @@ class UIexercise(QMainWindow):
         except Exception as e:
             print("Error in update_countdown:", e)
                            
-    # Function to switch pages
     def switch_to_next_cardio_image(self):
         self.current_image_index = (self.current_image_index + 1) % len(self.cardio_images)
         self.update_cardio_image()
@@ -521,7 +676,7 @@ class UIexercise(QMainWindow):
     def set_countnum_value(self):
         self.exercisestackedWidget.raise_()
         button_values = {
-            self.time1: 1,
+            self.time1: 20,
             self.time2: 30,
             self.time3: 40,
             self.time4: 50,
@@ -537,6 +692,30 @@ class UIexercise(QMainWindow):
                 self.labelduration1_3.setText(str(count_value))
                 self.labelduration1_4.setText(str(count_value))
                 self.labelduration1_5.setText(str(count_value))
+                
+                self.classiclabelduration1.setText(str(count_value))
+                self.classiclabelduration1_2.setText(str(count_value))
+                self.classiclabelduration1_3.setText(str(count_value))
+                self.classiclabelduration1_4.setText(str(count_value))
+                self.classiclabelduration1_5.setText(str(count_value))
+           
+                self.strengthlabelduration1.setText(str(count_value))
+                self.strengthlabelduration1_2.setText(str(count_value))
+                self.strengthlabelduration1_3.setText(str(count_value))
+                self.strengthlabelduration1_4.setText(str(count_value))
+                self.strengthlabelduration1_5.setText(str(count_value))
+          
+                self.flexiblelabelduration1.setText(str(count_value))
+                self.flexiblelabelduration1_2.setText(str(count_value))
+                self.flexiblelabelduration1_3.setText(str(count_value))
+                self.flexiblelabelduration1_4.setText(str(count_value))
+                self.flexiblelabelduration1_5.setText(str(count_value))
+         
+                self.intensitylabelduration1.setText(str(count_value))
+                self.intensitylabelduration1_2.setText(str(count_value))
+                self.intensitylabelduration1_3.setText(str(count_value))
+                self.intensitylabelduration1_4.setText(str(count_value))
+                self.intensitylabelduration1_5.setText(str(count_value))
 
                 break
             
@@ -559,7 +738,7 @@ class UIexercise(QMainWindow):
     def update_rest_count(self):
         self.exercisestackedWidget.raise_()
         self.rest_values = {
-            self.rest1: 1,
+            self.rest1: 5,
             self.rest2: 10,
             self.rest3: 15,
             self.rest4: 20,
@@ -573,6 +752,22 @@ class UIexercise(QMainWindow):
                 self.labelrest_2.setText(str(rest_value))
                 self.labelrest_3.setText(str(rest_value))
                 self.labelrest_4.setText(str(rest_value))  
+                self.classiclabelrest.setText(str(rest_value))
+                self.classiclabelrest_2.setText(str(rest_value))
+                self.classiclabelrest_3.setText(str(rest_value))
+                self.classiclabelrest_4.setText(str(rest_value))
+                self.strengthlabelrest.setText(str(rest_value))
+                self.strengthlabelrest_2.setText(str(rest_value))
+                self.strengthlabelrest_3.setText(str(rest_value))
+                self.strengthlabelrest_4.setText(str(rest_value))    
+                self.flexiblelabelrest.setText(str(rest_value))
+                self.flexiblelabelrest_2.setText(str(rest_value))
+                self.flexiblelabelrest_3.setText(str(rest_value))
+                self.flexiblelabelrest_4.setText(str(rest_value))
+                self.intensitylabelrest.setText(str(rest_value))
+                self.intensitylabelrest_2.setText(str(rest_value))
+                self.intensitylabelrest_3.setText(str(rest_value))
+                self.intensitylabelrest_4.setText(str(rest_value))  
                 break
         
 

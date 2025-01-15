@@ -1,5 +1,17 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>Group 75.png</file>
+    <file>bgcloud.png</file>
+    <file>features1.png</file>
+    <file>features2.png</file>
+    <file>features3.png</file>
+    <file>features4.png</file>
+    <file>features5.png</file>
+    <file>features6.png</file>
+    <file>features7.png</file>
+    <file>features8.png</file>
+    <file>features9.png</file>
+    <file>features10.png</file>
     <file>ghjkjk.jpeg</file>
     <file>Group 255.png</file>
     <file>Profile.png</file>

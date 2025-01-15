@@ -46,7 +46,44 @@ class DashboardMain(QMainWindow):
         self.go_to_task_button = self.findChild(QPushButton, "pushButton")
         self.save = self.findChild(QPushButton, "save")
         
-        
+          # Find the scroll area in the UI
+        self.scroll = self.findChild(QScrollArea, "scrollAreaWidgetContents_2")
+
+        # Configure the scroll area if found
+        if self.scroll:
+            self.scroll.setWidgetResizable(True)
+            self.scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+            self.scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+            self.scroll.setStyleSheet("""
+                QScrollArea {
+                    background: transparent;
+                }
+                QScrollBar:vertical {
+                    border: none;
+                    background: #f0f0f0;
+                    width: 8px;
+                    margin: 10px 0 10px 0;
+                    border-radius: 4px;
+                }
+                QScrollBar::handle:vertical {
+                    background: #a0a0a0;
+                    min-height: 20px;
+                    border-radius: 4px;
+                }
+                QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                    background: none;
+                }
+            """)
+
+        else:
+            print("Scroll area not found in UI.")
+
+        # Ensure scrollWidgetContents has a layout
+        if self.scrollAreaWidgetContents_2.layout() is None:
+            layout = QGridLayout(self.scrollAreaWidgetContents_2)
+            layout.setVerticalSpacing(25)
+            layout.setHorizontalSpacing(25)
+            self.scrollAreaWidgetContents_2.setLayout(layout)
 
         # Back Buttons
         self.back_button1 = self.findChild(QPushButton, "BackButton")
@@ -55,40 +92,6 @@ class DashboardMain(QMainWindow):
         self.change_button = self.findChild(QPushButton, "pushButton")
         self.userName = self.findChild(QLabel, "userName")
         
-        self.scrollWidgetContents = self.findChild(QWidget, "scrollAreaWidgetContents")
-        self.scroll = self.findChild(QScrollArea, "scrollArea")
-
-    
-        # Define the custom scroll bar style
-        scroll_bar_style = """
-            QScrollArea {
-                background: transparent;
-            }
-            QScrollBar:vertical {
-                border: none;
-                background: none;
-                width: 10px;
-                margin: 0px 0px 0px 0px;
-            }
-            QScrollBar::handle:vertical {
-                background: none;
-                min-height: 20px;
-                border-radius: 5px;
-            }
-            QScrollBar::handle:vertical:hover {
-                background: #555;
-            }
-            QScrollBar::handle:vertical:pressed {
-                background: #333;
-            }
-            QScrollBar::sub-line:vertical, QScrollBar::add-line:vertical {
-                height: 0px;
-            }
-        """
-        
-        # Apply the style to the scroll area
-        self.scroll.setStyleSheet(scroll_bar_style)
-
         # Functionality of homedashboard buttons
         self.profile_button.clicked.connect(self.go_to_profile_widget)
         self.setting_button.clicked.connect(self.go_to_setting_widget)
@@ -132,7 +135,8 @@ class DashboardMain(QMainWindow):
         
         # Connect the save button to the custom slot
         self.save.clicked.connect(self.save_person_info)
-    
+        
+       
     def save_person_info(self):
         # Set the text of the label to the text from the QLineEdit
         self.label.setText(self.personinfo.text())
@@ -233,3 +237,4 @@ if __name__ == "__main__":
     main_window = DashboardMain()
     main_window.show()
     sys.exit(app.exec_())
+    

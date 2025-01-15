@@ -1,0 +1,24 @@
+<RCC>
+  <qresource prefix="bg">
+    <file>Feature Page.png</file>
+    <file>Feature Page-1.png</file>
+    <file>Feature Page-2.png</file>
+    <file>Feature Page-3.png</file>
+    <file>Feature Page-4.png</file>
+    <file>Feature Page-5.png</file>
+    <file>Feature Page-6.png</file>
+    <file>Feature Page-7.png</file>
+    <file>Feature Page-8.png</file>
+  </qresource>
+  <qresource prefix="bg1">
+    <file>Feature Page.png</file>
+    <file>Feature Page-1.png</file>
+    <file>Feature Page-2.png</file>
+    <file>Feature Page-3.png</file>
+    <file>Feature Page-4.png</file>
+    <file>Feature Page-5.png</file>
+    <file>Feature Page-6.png</file>
+    <file>Feature Page-7.png</file>
+    <file>Feature Page-8.png</file>
+  </qresource>
+</RCC>

@@ -10,6 +10,11 @@ from Grocery.grocery import UI
 from LogIn.login import login
 from WaterExercise.exercise import UIexercise
 from WaterExercise.water import UIwater
+from foodCalorie.calorie import Calorie
+from foodGuide.foodHanling import FoodHand
+from Skintip.skincare import Skin
+from calorieIn.calorieIntake import Ui
+from allergin.allergin import Ui
 
 class MainPage(QWidget):
     def __init__(self):
@@ -28,6 +33,11 @@ class MainPage(QWidget):
         self.grocery_window = UI()
         self.water_window = UIwater()
         self.exercise_window = UIexercise()
+        self.foodcalorie_window = Calorie()
+        self.foodcHandling_window = FoodHand()
+        self.skintip_window = Skin()
+        self.calorieIn_window = Ui()
+        self.allergin_window = Ui()
 
         # Add pages to stacked widget
         self.stacked_widget.addWidget(self.login_window)
@@ -37,11 +47,24 @@ class MainPage(QWidget):
         self.stacked_widget.addWidget(self.grocery_window)
         self.stacked_widget.addWidget(self.water_window)
         self.stacked_widget.addWidget(self.exercise_window)
+        self.stacked_widget.addWidget(self.foodcalorie_window)
+        self.stacked_widget.addWidget(self.foodcHandling_window)
+        self.stacked_widget.addWidget(self.skintip_window)
+        self.stacked_widget.addWidget(self.calorieIn_window)
+        self.stacked_widget.addWidget(self.allergin_window)
 
         # Use buttons within stacked widgets to switch between pages
         self.dashboard_window.pushButton.clicked.connect(self.show_calendar_page)
         self.dashboard_window.pushButton_6.clicked.connect(self.show_recipe_page)
         self.dashboard_window.pushButton_7.clicked.connect(self.show_grocery_page)
+        self.dashboard_window.pushButton_2.clicked.connect(self.show_foodCalorie)
+        self.dashboard_window.skincare.clicked.connect(self.show_skintip)
+        self.dashboard_window.pushButton_9.clicked.connect(self.show_foodGuide)
+        self.dashboard_window.pushButton_8.clicked.connect(self.show_allergin)
+        # self.dashboard_window.calorieButton.clicked.connect(self.show_calorieIn)
+        
+        
+        
         self.login_window.signFinish.clicked.connect(self.signup_and_goto_login)
         self.dashboard_window.logOut.clicked.connect(self.go_to_login)
         self.dashboard_window.calendarButton.clicked.connect(self.show_calendar_page)
@@ -49,6 +72,7 @@ class MainPage(QWidget):
         self.dashboard_window.waterButton.clicked.connect(self.show_water)
         self.dashboard_window.waterButton2.clicked.connect(self.show_water)
         self.dashboard_window.exerciseButton.clicked.connect(self.show_exercise)
+        
 
         # Validate login when the login button is clicked
         self.login_window.pushButton.clicked.connect(self.validate_login)
@@ -60,6 +84,12 @@ class MainPage(QWidget):
         self.calendar_window.BackButton.clicked.connect(self.show_dashboard_page)
         self.recipe_window.homeButton.clicked.connect(self.show_dashboard_page)
         self.grocery_window.grocerybackbutton_2.clicked.connect(self.show_dashboard_page)
+        self.foodcHandling_window.backButton.clicked.connect(self.show_dashboard_page)
+        self.foodcalorie_window.backButton2.clicked.connect(self.show_dashboard_page)
+        self.skintip_window.backButton.clicked.connect(self.show_dashboard_page)
+        self.calorieIn_window.backButton.clicked.connect(self.show_dashboard_page)
+        self.allergin_window.backButton.clicked.connect(self.show_dashboard_page)
+        
 
         # Connect to MySQL database with error handling
         try:
@@ -78,8 +108,19 @@ class MainPage(QWidget):
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)  # Set margins to zero
         self.layout.addWidget(self.stacked_widget)
+    
+    def show_allergin(self):
+        self.stacked_widget.setCurrentWidget(self.allergin_window)
+           
+    def show_calorieIn(self):
+        self.stacked_widget.setCurrentWidget(self.calorieIn_window)
+        
+    def show_skintip(self):
+        self.stacked_widget.setCurrentWidget(self.skintip_window)
+           
+    def show_foodGuide(self):
+        self.stacked_widget.setCurrentWidget(self.foodcHandling_window)
 
-    #Functions for pages navigating
     def show_calendar_page(self):
         self.stacked_widget.setCurrentWidget(self.calendar_window)
 
@@ -97,8 +138,10 @@ class MainPage(QWidget):
     
     def show_exercise(self):
         self.stacked_widget.setCurrentWidget(self.exercise_window)
+        
+    def show_foodCalorie(self):
+        self.stacked_widget.setCurrentWidget(self.foodcalorie_window)
 
-    # Funtion for signup that will be thrown to mysql
     def signup_and_goto_login(self):
         username = self.login_window.userSignup.text()
         password = self.login_window.passwordSignup.text()
@@ -120,7 +163,6 @@ class MainPage(QWidget):
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Error", f"Failed to register user: {err}")
 
-    # Validating if the credentials are present in the mysql
     def validate_login(self):
         username = self.login_window.userLogin.text()
         password = self.login_window.passwordLogin.text()
