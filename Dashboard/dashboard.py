@@ -111,38 +111,74 @@ class DashboardMain(QMainWindow):
         self.image_file_path = ""
 
         # QLineEdit and QLabel
-        self.personinfo = self.findChild(QLineEdit, "personinfo")
-        self.personinfo_2 = self.findChild(QLineEdit, "personinfo_2")
-        self.personinfo_3 = self.findChild(QLineEdit, "personinfo_3")
-        self.personinfo_4 = self.findChild(QLineEdit, "personinfo_4")
-        self.personinfo_5 = self.findChild(QLineEdit, "personinfo_5")
-        self.personinfo_6 = self.findChild(QLineEdit, "personinfo_6")
-        self.personinfo_7 = self.findChild(QLineEdit, "personinfo_7")
-        self.personinfo_8 = self.findChild(QLineEdit, "personinfo_8")
-        self.personinfo_9 = self.findChild(QLineEdit, "personinfo_9")
-        self.personinfo_10 = self.findChild(QLineEdit, "personinfo_10")
-        self.personinfo_11 = self.findChild(QLineEdit, "personinfo_11")
-        self.label = self.findChild(QLabel, "label")
-        self.label_2 = self.findChild(QLabel, "label_2")
-        self.label_3 = self.findChild(QLabel, "label_3")
-        self.label_4 = self.findChild(QLabel, "label_4")
-        self.label_5 = self.findChild(QLabel, "label_5")
-        self.label_6 = self.findChild(QLabel, "label_6")
-        self.label_7 = self.findChild(QLabel, "label_7")
-        self.label_8 = self.findChild(QLabel, "label_8")
-        self.label_9 = self.findChild(QLabel, "label_9")
-        self.label_10 = self.findChild(QLabel, "label_10")
+        self.personinfo = self.findChild(QLineEdit, "nameBox")
+        self.personinfo_2 = self.findChild(QLineEdit, "contactBox")
+        self.personinfo_3 = self.findChild(QLineEdit, "dateBox")
+        self.personinfo_4 = self.findChild(QLineEdit, "sexBox")
+        self.personinfo_5 = self.findChild(QLineEdit, "weightBox")
+        self.personinfo_6 = self.findChild(QLineEdit, "heightBox")
+        self.personinfo_7 = self.findChild(QLineEdit, "bmiBox")
+        self.personinfo_8 = self.findChild(QLineEdit, "bloodBox")
+        self.personinfo_9 = self.findChild(QLineEdit, "heartBox")
+        self.personinfo_10 = self.findChild(QLineEdit, "cholesterolBox")
+        self.personinfo_11 = self.findChild(QLineEdit, "usernameBox")
+        self.label = self.findChild(QLabel, "ageLabel")
+        self.label_2 = self.findChild(QLabel, "sexLabel")
+        self.label_3 = self.findChild(QLabel, "heightLabel")
+        self.label_4 = self.findChild(QLabel, "weightLabel")
+        self.label_5 = self.findChild(QLabel, "dateLabel")
+        self.label_6 = self.findChild(QLabel, "contactLabel")
+        self.label_7 = self.findChild(QLabel, "bmiLabel")
+        self.label_8 = self.findChild(QLabel, "bpLabel")
+        self.label_9 = self.findChild(QLabel, "heartLabel")
+        self.label_10 = self.findChild(QLabel, "cholesterolLabel")
         
         # Connect the save button to the custom slot
-        self.save.clicked.connect(self.save_person_info)
-        
-       
+        # Inside __init__()
+        self.load_profile_data()
+        # Save button click saves data and reloads it
+        self.save.clicked.connect(lambda: [self.save_person_info(), self.load_profile_data()])
+
     def save_person_info(self):
-        # Set the text of the label to the text from the QLineEdit
-        self.label.setText(self.personinfo.text())
-        self.label_2.setText(self.personinfo_4.text())
-        self.label_4.setText(self.personinfo_5.text())
-        self.label_3.setText(self.personinfo_6.text())
+        # Save QLineEdit data to the database
+        try:
+            query = """
+            INSERT INTO user_profiles_info (
+                username, name, contact
+            ) VALUES (
+                %s, %s, %s
+            )
+            ON DUPLICATE KEY UPDATE
+                name = VALUES(name),
+                contact = VALUES(contact)
+            """
+            data = (
+                self.personinfo_11.text(),  # username
+                self.personinfo.text(),    # name
+                self.personinfo_2.text(),  # contact
+            )
+            self.db_cursor.execute(query, data)
+            self.db_connection.commit()
+            QMessageBox.information(self, "Success", "Profile information saved successfully!")
+        except mysql.connector.Error as err:
+            QMessageBox.critical(self, "Database Error", f"Error saving profile information: {err}")
+
+    def load_profile_data(self):
+        try:
+            username = self.userName.text()  # Assume the username is entered in this QLineEdit
+            query = "SELECT * FROM user_profiles WHERE username = %s"
+            self.db_cursor.execute(query, (username,))
+            result = self.db_cursor.fetchone()
+
+            if result:
+                # Map results to labels
+                self.label.setText(result['name'])
+                self.label_6.setText(result['contact'])
+
+            else:
+                QMessageBox.warning(self, "Not Found", "No profile found for the given username.")
+        except mysql.connector.Error as err:
+            QMessageBox.critical(self, "Database Error", f"Error loading profile data: {err}")
 
     def update_profile_name(self):
         if self.logged_in_user_id is None:

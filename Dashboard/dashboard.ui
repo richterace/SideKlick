@@ -39,7 +39,7 @@
 background-color:transparent;</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="Profile">
     <property name="styleSheet">
@@ -112,7 +112,7 @@ border-radius: 65px;
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="ageLabel">
      <property name="geometry">
       <rect>
        <x>105</x>
@@ -136,7 +136,7 @@ background-color:transparent;</string>
       <string>18</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="sexLabel">
      <property name="geometry">
       <rect>
        <x>105</x>
@@ -160,7 +160,7 @@ background-color:transparent;</string>
       <string>Female</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="heightLabel">
      <property name="geometry">
       <rect>
        <x>118</x>
@@ -184,7 +184,7 @@ background-color:transparent;</string>
       <string>180 cm</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="weightLabel">
      <property name="geometry">
       <rect>
        <x>121</x>
@@ -208,7 +208,7 @@ background-color:transparent;</string>
       <string>67 kg</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
+    <widget class="QLabel" name="dateLabel">
      <property name="geometry">
       <rect>
        <x>147</x>
@@ -232,7 +232,7 @@ background-color:transparent;</string>
       <string>02/23/2025</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_6">
+    <widget class="QLabel" name="contactLabel">
      <property name="geometry">
       <rect>
        <x>168</x>
@@ -256,7 +256,7 @@ background-color:transparent;</string>
       <string>09674154432</string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_7">
+    <widget class="QLabel" name="bmiLabel">
      <property name="geometry">
       <rect>
        <x>103</x>
@@ -280,7 +280,7 @@ background-color:transparent;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_8">
+    <widget class="QLabel" name="bpLabel">
      <property name="geometry">
       <rect>
        <x>162</x>
@@ -304,7 +304,7 @@ background-color:transparent;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_9">
+    <widget class="QLabel" name="heartLabel">
      <property name="geometry">
       <rect>
        <x>137</x>
@@ -328,7 +328,7 @@ background-color:transparent;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_10">
+    <widget class="QLabel" name="cholesterolLabel">
      <property name="geometry">
       <rect>
        <x>168</x>
@@ -835,7 +835,7 @@ background-color:transparent;</string>
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo">
+    <widget class="QLineEdit" name="nameBox">
      <property name="geometry">
       <rect>
        <x>32</x>
@@ -856,7 +856,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_2">
+    <widget class="QLineEdit" name="contactBox">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -877,7 +877,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_3">
+    <widget class="QLineEdit" name="dateBox">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -898,7 +898,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_4">
+    <widget class="QLineEdit" name="sexBox">
      <property name="geometry">
       <rect>
        <x>204</x>
@@ -919,7 +919,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_5">
+    <widget class="QLineEdit" name="weightBox">
      <property name="geometry">
       <rect>
        <x>204</x>
@@ -940,7 +940,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_6">
+    <widget class="QLineEdit" name="heightBox">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -961,7 +961,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_7">
+    <widget class="QLineEdit" name="bmiBox">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -982,7 +982,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_8">
+    <widget class="QLineEdit" name="bloodBox">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1003,7 +1003,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_9">
+    <widget class="QLineEdit" name="heartBox">
      <property name="geometry">
       <rect>
        <x>30</x>
@@ -1024,7 +1024,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_10">
+    <widget class="QLineEdit" name="cholesterolBox">
      <property name="geometry">
       <rect>
        <x>29</x>
@@ -1045,7 +1045,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="personinfo_11">
+    <widget class="QLineEdit" name="usernameBox">
      <property name="geometry">
       <rect>
        <x>32</x>
@@ -1169,7 +1169,7 @@ background-color:transparent</string>
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-334</y>
+         <y>0</y>
          <width>365</width>
          <height>1042</height>
         </rect>
