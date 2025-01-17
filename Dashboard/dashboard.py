@@ -135,50 +135,48 @@ class DashboardMain(QMainWindow):
         
         # Connect the save button to the custom slot
         # Inside __init__()
-        self.load_profile_data()
+        # self.load_profile_data()
+        self.logged_in_user_id = None  # Initialize to None
         # Save button click saves data and reloads it
-        self.save.clicked.connect(lambda: [self.save_person_info(), self.load_profile_data()])
+        # self.save.clicked.connect(lambda: [self.save_person_info(), self.load_profile_data()])
+        self.save.clicked.connect(self.save_person_info)
 
+    
     def save_person_info(self):
-        # Save QLineEdit data to the database
-        try:
-            query = """
-            INSERT INTO user_profiles_info (
-                username, name, contact
-            ) VALUES (
-                %s, %s, %s
-            )
-            ON DUPLICATE KEY UPDATE
-                name = VALUES(name),
-                contact = VALUES(contact)
-            """
-            data = (
-                self.personinfo_11.text(),  # username
-                self.personinfo.text(),    # name
-                self.personinfo_2.text(),  # contact
-            )
-            self.db_cursor.execute(query, data)
+        cursor = self.db_connection.cursor()
+        
+        # Retrieve selected values from QComboBoxes
+        name = str(self.personinfo.text())
+        contact = str(self.personinfo_2.text())
+        height = str(self.personinfo_6.text())
+        weight = str(self.personinfo_5.text())
+
+        # You need to implement this logic based on your application
+        user_id = self.logged_in_user_id
+
+        if user_id is not None:  # Check if user_id is not None
+            # Get the username from the QLineEdit widget
+            username_input = self.findChild(QLineEdit, "usernameBox")
+            username = username_input.text() if username_input else None
+
+            if not username:  # Check if username is empty
+                QMessageBox.warning(self, "Warning", "Username is required.")
+                return
+
+            query = "INSERT INTO user_profiles_info (user_id, name, contact, username, height, weight) VALUES (%s, %s, %s, %s, %s, %s)"
+            row = (user_id, name, contact, username, height, weight)
+
+            cursor.execute(query, row)
             self.db_connection.commit()
-            QMessageBox.information(self, "Success", "Profile information saved successfully!")
-        except mysql.connector.Error as err:
-            QMessageBox.critical(self, "Database Error", f"Error saving profile information: {err}")
+            # self.updateTaskList(selected_date.toPyDate())  # Pass the Python date instead of the QDate
+            self.personinfo.clear()
+            self.personinfo_2.clear()
+            self.stacked_widget.setCurrentIndex(0)
+        else:
+            QMessageBox.warning(self, "Warning", "User not logged in. Cannot save task without a valid user.")
 
-    def load_profile_data(self):
-        try:
-            username = self.userName.text()  # Assume the username is entered in this QLineEdit
-            query = "SELECT * FROM user_profiles WHERE username = %s"
-            self.db_cursor.execute(query, (username,))
-            result = self.db_cursor.fetchone()
-
-            if result:
-                # Map results to labels
-                self.label.setText(result['name'])
-                self.label_6.setText(result['contact'])
-
-            else:
-                QMessageBox.warning(self, "Not Found", "No profile found for the given username.")
-        except mysql.connector.Error as err:
-            QMessageBox.critical(self, "Database Error", f"Error loading profile data: {err}")
+    # def load_profile_data(self):
+        
 
     def update_profile_name(self):
         if self.logged_in_user_id is None:
