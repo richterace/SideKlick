@@ -133,7 +133,7 @@ border-radius: 65px;
 background-color:transparent;</string>
      </property>
      <property name="text">
-      <string>18</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="sexLabel">
@@ -157,7 +157,7 @@ background-color:transparent;</string>
 background-color:transparent;</string>
      </property>
      <property name="text">
-      <string>Female</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="heightLabel">
@@ -181,7 +181,7 @@ background-color:transparent;</string>
 background-color:transparent;</string>
      </property>
      <property name="text">
-      <string>180 cm</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="weightLabel">
@@ -205,39 +205,15 @@ background-color:transparent;</string>
 background-color:transparent;</string>
      </property>
      <property name="text">
-      <string>67 kg</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="dateLabel">
-     <property name="geometry">
-      <rect>
-       <x>147</x>
-       <y>505</y>
-       <width>184</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Arial</family>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background:none;
-background-color:transparent;</string>
-     </property>
-     <property name="text">
-      <string>02/23/2025</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="contactLabel">
      <property name="geometry">
       <rect>
-       <x>168</x>
-       <y>528</y>
-       <width>181</width>
+       <x>165</x>
+       <y>504</y>
+       <width>111</width>
        <height>20</height>
       </rect>
      </property>
@@ -253,7 +229,7 @@ background-color:transparent;</string>
 background-color:transparent;</string>
      </property>
      <property name="text">
-      <string>09674154432</string>
+      <string/>
      </property>
     </widget>
     <widget class="QLabel" name="bmiLabel">
@@ -352,6 +328,69 @@ background-color:transparent;</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="contactLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>500</y>
+       <width>241</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;
+background-color:#e5f6fd;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="contactLabel_3">
+     <property name="geometry">
+      <rect>
+       <x>77</x>
+       <y>504</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;
+background-color:transparent;</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Contact Number:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <zorder>ProfileButton</zorder>
+    <zorder>BackButton</zorder>
+    <zorder>ProfileButton_6</zorder>
+    <zorder>ageLabel</zorder>
+    <zorder>sexLabel</zorder>
+    <zorder>heightLabel</zorder>
+    <zorder>weightLabel</zorder>
+    <zorder>bmiLabel</zorder>
+    <zorder>bpLabel</zorder>
+    <zorder>heartLabel</zorder>
+    <zorder>cholesterolLabel</zorder>
+    <zorder>contactLabel_2</zorder>
+    <zorder>contactLabel</zorder>
+    <zorder>contactLabel_3</zorder>
    </widget>
    <widget class="QWidget" name="Dashboard">
     <property name="styleSheet">
@@ -877,7 +916,7 @@ border: 3px solid #86CCFF}</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLineEdit" name="dateBox">
+    <widget class="QLineEdit" name="ageBox">
      <property name="geometry">
       <rect>
        <x>31</x>
@@ -1089,6 +1128,57 @@ border-radius:10px;</string>
      </property>
      <property name="text">
       <string>SAVE</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="WHITEBG">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>270</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;
+background-color:#FFFFFF;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="ageLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>34</x>
+       <y>267</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Arial</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="whatsThis">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;Age&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:none;
+background-color:#FFFFFF;</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; font-weight:400;&quot;&gt;Age&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>

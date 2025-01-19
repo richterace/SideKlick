@@ -31,7 +31,6 @@ class DashboardMain(QMainWindow):
             self.db_cursor = self.db_connection.cursor()
         except mysql.connector.Error as err:
             QMessageBox.critical(self, "Database Connection Error", f"Failed to connect to database: {err}")
-            sys.exit(1)
 
         # Find the stacked widget in the UI
         self.stacked_widget = self.findChild(QStackedWidget, "stackedWidget")
@@ -113,7 +112,7 @@ class DashboardMain(QMainWindow):
         # QLineEdit and QLabel
         self.nameBox = self.findChild(QLineEdit, "nameBox")
         self.contactBox = self.findChild(QLineEdit, "contactBox")
-        self.dateBox = self.findChild(QLineEdit, "dateBox")
+        self.ageBox = self.findChild(QLineEdit, "ageBox")
         self.sexBox = self.findChild(QLineEdit, "sexBox")
         self.weightBox = self.findChild(QLineEdit, "weightBox")
         self.heightBox = self.findChild(QLineEdit, "heightBox")
@@ -147,10 +146,15 @@ class DashboardMain(QMainWindow):
         
         # Retrieve selected values from QComboBoxes
         name = str(self.nameBox.text())
+        age = str(self.ageBox.text())
         contact = str(self.contactBox.text())
         height = str(self.heightBox.text())
         sex = str(self.sexBox.text())
         weight = str(self.weightBox.text())
+        bmi = str(self.bmiBox.text())
+        bp = str(self.bloodBox.text())
+        hrate = str(self.heartBox.text())
+        clevel = str(self.cholesterolBox.text())
 
         # You need to implement this logic based on your application
         user_id = self.logged_in_user_id
@@ -164,18 +168,24 @@ class DashboardMain(QMainWindow):
                 QMessageBox.warning(self, "Warning", "Username is required.")
                 return
 
-            query = "INSERT INTO user_profiles_info (user_id, name, contact, sex, username, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            row = (user_id, name, contact, sex, username, height, weight)
+            query = "INSERT INTO user_profiles_info (user_id, name, age, contact, sex, username, height, weight, bmi, blood_pressure, heart_rate, cholesterol_level) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+            row = (user_id, name, age, contact, sex, username, height, weight, bmi, bp, hrate,clevel)
 
             cursor.execute(query, row)
             self.db_connection.commit()
             # self.updateTaskList(selected_date.toPyDate())  # Pass the Python date instead of the QDate
             self.nameBox.clear()
             self.usernameBox.clear()
+            self.ageBox.clear()
             self.contactBox.clear()
             self.sexBox.clear()
             self.heightBox.clear()
             self.weightBox.clear()
+
+            self.bmiBox.clear()
+            self.bloodBox.clear()
+            self.heartBox.clear()
+            self.cholesterolBox.clear()
             self.stacked_widget.setCurrentIndex(0)
         else:
             QMessageBox.warning(self, "Warning", "User not logged in. Cannot save task without a valid user.")
@@ -188,19 +198,24 @@ class DashboardMain(QMainWindow):
         cursor = self.db_connection.cursor()
 
         # Query to fetch user data based on logged-in user ID
-        query = "SELECT contact, sex, height, weight FROM user_profiles_info WHERE user_id = %s"
+        query = "SELECT age, contact, sex, height,   weight, bmi, blood_pressure, heart_rate, cholesterol_level FROM user_profiles_info WHERE user_id = %s"
         cursor.execute(query, (self.logged_in_user_id,))
         result = cursor.fetchone()
 
         if result:
-            contact, sex, height, weight = result
+            age, contact, sex, height, weight, bmi, bp, hr, cl = result
 
             # Set QLabel text with the fetched data
             # self.label.setText(f"Name: {name}")
+            self.ageLabel.setText(f"{int(age)}")
             self.contactLabel.setText(f"{contact}")
             self.sexLabel.setText(f"{sex}")
-            self.heightLabel.setText(f"{height} cm")
-            self.weightLabel.setText(f"{weight} kg")
+            self.heightLabel.setText(f"{int(height)} cm")
+            self.weightLabel.setText(f"{int(weight)} kg")
+            self.bmiLabel.setText(f"{int(bmi)}")
+            self.bpLabel.setText(f"{bp}")
+            self.heartLabel.setText(f"{hr}")
+            self.cholesterolLabel.setText(f"{cl}")
         else:
             QMessageBox.information(self, "Info", "No profile data found for the logged-in user.")
 
