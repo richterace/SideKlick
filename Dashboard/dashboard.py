@@ -111,45 +111,46 @@ class DashboardMain(QMainWindow):
         self.image_file_path = ""
 
         # QLineEdit and QLabel
-        self.personinfo = self.findChild(QLineEdit, "nameBox")
-        self.personinfo_2 = self.findChild(QLineEdit, "contactBox")
-        self.personinfo_3 = self.findChild(QLineEdit, "dateBox")
-        self.personinfo_4 = self.findChild(QLineEdit, "sexBox")
-        self.personinfo_5 = self.findChild(QLineEdit, "weightBox")
-        self.personinfo_6 = self.findChild(QLineEdit, "heightBox")
-        self.personinfo_7 = self.findChild(QLineEdit, "bmiBox")
-        self.personinfo_8 = self.findChild(QLineEdit, "bloodBox")
-        self.personinfo_9 = self.findChild(QLineEdit, "heartBox")
-        self.personinfo_10 = self.findChild(QLineEdit, "cholesterolBox")
-        self.personinfo_11 = self.findChild(QLineEdit, "usernameBox")
-        self.label = self.findChild(QLabel, "ageLabel")
-        self.label_2 = self.findChild(QLabel, "sexLabel")
-        self.label_3 = self.findChild(QLabel, "heightLabel")
-        self.label_4 = self.findChild(QLabel, "weightLabel")
-        self.label_5 = self.findChild(QLabel, "dateLabel")
-        self.label_6 = self.findChild(QLabel, "contactLabel")
-        self.label_7 = self.findChild(QLabel, "bmiLabel")
-        self.label_8 = self.findChild(QLabel, "bpLabel")
-        self.label_9 = self.findChild(QLabel, "heartLabel")
-        self.label_10 = self.findChild(QLabel, "cholesterolLabel")
+        self.nameBox = self.findChild(QLineEdit, "nameBox")
+        self.contactBox = self.findChild(QLineEdit, "contactBox")
+        self.dateBox = self.findChild(QLineEdit, "dateBox")
+        self.sexBox = self.findChild(QLineEdit, "sexBox")
+        self.weightBox = self.findChild(QLineEdit, "weightBox")
+        self.heightBox = self.findChild(QLineEdit, "heightBox")
+        self.bmiBox = self.findChild(QLineEdit, "bmiBox")
+        self.bloodBox = self.findChild(QLineEdit, "bloodBox")
+        self.heartBox = self.findChild(QLineEdit, "heartBox")
+        self.cholesterolBox = self.findChild(QLineEdit, "cholesterolBox")
+        self.usernameBox = self.findChild(QLineEdit, "usernameBox")
+        self.ageLabel = self.findChild(QLabel, "ageLabel")
+        self.sexLabel = self.findChild(QLabel, "sexLabel")
+        self.heightLabel = self.findChild(QLabel, "heightLabel")
+        self.weightLabel = self.findChild(QLabel, "weightLabel")
+        self.dateLabel = self.findChild(QLabel, "dateLabel")
+        self.contactLabel = self.findChild(QLabel, "contactLabel")
+        self.bmiLabel = self.findChild(QLabel, "bmiLabel")
+        self.bpLabel = self.findChild(QLabel, "bpLabel")
+        self.heartLabel = self.findChild(QLabel, "heartLabel")
+        self.cholesterolLabel = self.findChild(QLabel, "cholesterolLabel")
         
         # Connect the save button to the custom slot
         # Inside __init__()
         # self.load_profile_data()
         self.logged_in_user_id = None  # Initialize to None
         # Save button click saves data and reloads it
-        # self.save.clicked.connect(lambda: [self.save_person_info(), self.load_profile_data()])
-        self.save.clicked.connect(self.save_person_info)
+        self.save.clicked.connect(lambda: [self.save_person_info(), self.load_profile_data()])
+        # self.save.clicked.connect(self.save_person_info)
 
     
     def save_person_info(self):
         cursor = self.db_connection.cursor()
         
         # Retrieve selected values from QComboBoxes
-        name = str(self.personinfo.text())
-        contact = str(self.personinfo_2.text())
-        height = str(self.personinfo_6.text())
-        weight = str(self.personinfo_5.text())
+        name = str(self.nameBox.text())
+        contact = str(self.contactBox.text())
+        height = str(self.heightBox.text())
+        sex = str(self.sexBox.text())
+        weight = str(self.weightBox.text())
 
         # You need to implement this logic based on your application
         user_id = self.logged_in_user_id
@@ -163,19 +164,47 @@ class DashboardMain(QMainWindow):
                 QMessageBox.warning(self, "Warning", "Username is required.")
                 return
 
-            query = "INSERT INTO user_profiles_info (user_id, name, contact, username, height, weight) VALUES (%s, %s, %s, %s, %s, %s)"
-            row = (user_id, name, contact, username, height, weight)
+            query = "INSERT INTO user_profiles_info (user_id, name, contact, sex, username, height, weight) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            row = (user_id, name, contact, sex, username, height, weight)
 
             cursor.execute(query, row)
             self.db_connection.commit()
             # self.updateTaskList(selected_date.toPyDate())  # Pass the Python date instead of the QDate
-            self.personinfo.clear()
-            self.personinfo_2.clear()
+            self.nameBox.clear()
+            self.usernameBox.clear()
+            self.contactBox.clear()
+            self.sexBox.clear()
+            self.heightBox.clear()
+            self.weightBox.clear()
             self.stacked_widget.setCurrentIndex(0)
         else:
             QMessageBox.warning(self, "Warning", "User not logged in. Cannot save task without a valid user.")
 
-    # def load_profile_data(self):
+    def load_profile_data(self):
+        if self.logged_in_user_id is None:
+            QMessageBox.warning(self, "Warning", "User not logged in. Cannot load profile data without a valid user.")
+            return
+
+        cursor = self.db_connection.cursor()
+
+        # Query to fetch user data based on logged-in user ID
+        query = "SELECT contact, sex, height, weight FROM user_profiles_info WHERE user_id = %s"
+        cursor.execute(query, (self.logged_in_user_id,))
+        result = cursor.fetchone()
+
+        if result:
+            contact, sex, height, weight = result
+
+            # Set QLabel text with the fetched data
+            # self.label.setText(f"Name: {name}")
+            self.contactLabel.setText(f"{contact}")
+            self.sexLabel.setText(f"{sex}")
+            self.heightLabel.setText(f"{height} cm")
+            self.weightLabel.setText(f"{weight} kg")
+        else:
+            QMessageBox.information(self, "Info", "No profile data found for the logged-in user.")
+
+        cursor.close()
         
 
     def update_profile_name(self):
