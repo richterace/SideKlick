@@ -90,7 +90,6 @@ class MainPage(QWidget):
         self.calorieIn_window.backButton.clicked.connect(self.show_dashboard_page)
         self.allergin_window.backButton.clicked.connect(self.show_dashboard_page)
         
-
         # Connect to MySQL database with error handling
         try:
             self.db_connection = mysql.connector.connect(
@@ -183,6 +182,8 @@ class MainPage(QWidget):
             self.dashboard_window.logged_in_user_id = logged_in_user_id
             self.dashboard_window.update_profile_name()
             self.show_dashboard_page()
+            # Call the load_profile_data method for the dashboard
+            self.dashboard_window.load_profile_data()
             # Proceed to dashboard or wherever needed
         else:
             QMessageBox.warning(self, "Error", "Invalid username or password!")
