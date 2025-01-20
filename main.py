@@ -184,6 +184,7 @@ class MainPage(QWidget):
             self.show_dashboard_page()
             # Call the load_profile_data method for the dashboard
             self.dashboard_window.load_profile_data()
+            self.dashboard_window.load_profile_image()
             # Proceed to dashboard or wherever needed
         else:
             QMessageBox.warning(self, "Error", "Invalid username or password!")

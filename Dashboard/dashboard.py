@@ -173,7 +173,8 @@ class DashboardMain(QMainWindow):
 
             cursor.execute(query, row)
             self.db_connection.commit()
-            # self.updateTaskList(selected_date.toPyDate())  # Pass the Python date instead of the QDate
+
+            # clear the input boxes
             self.nameBox.clear()
             self.usernameBox.clear()
             self.ageBox.clear()
@@ -266,7 +267,7 @@ class DashboardMain(QMainWindow):
             )
             cursor = conn.cursor()
             username = "your_username"
-            cursor.execute("UPDATE user_profiles SET profile_image = %s WHERE username = %s", (self.image_file_path, username))  # Use the instance variable
+            cursor.execute("UPDATE user_profiles_info SET profile_image = %s WHERE username = %s", (self.image_file_path, username))  # Use the instance variable
             conn.commit()
         except mysql.connector.Error as e:
             print(f"Error saving profile image: {e}")
@@ -277,6 +278,7 @@ class DashboardMain(QMainWindow):
 
 
     def load_profile_image(self):
+        
         try:
             conn = mysql.connector.connect(
                host="127.0.0.1",
@@ -286,7 +288,7 @@ class DashboardMain(QMainWindow):
             )
             cursor = conn.cursor()
             username = "your_username"
-            cursor.execute("SELECT profile_image FROM user_profiles WHERE username = %s", (username,))
+            cursor.execute("SELECT profile_image FROM user_profiles_info WHERE username = %s", (username,))
             result = cursor.fetchone()
             if result:
                 file_path = result[0]
