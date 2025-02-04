@@ -1,12 +1,13 @@
 <RCC>
   <qresource prefix="background">
-    <file>images/bg.png</file>
-    <file>images/Grocery.png</file>
     <file>images/grocerybackground.png</file>
+    <file>images/backButton.png</file>
+    <file>images/Grocery.png</file>
+    <file>images/bg.png</file>
   </qresource>
   <qresource prefix="buttons">
-    <file>images/delete.png</file>
     <file>images/ADD.png</file>
-    <file>images/addbutton.png</file>
+    <file>images/addButton.png</file>
+    <file>images/delete.png</file>
   </qresource>
 </RCC>

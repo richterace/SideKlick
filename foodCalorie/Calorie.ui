@@ -36,8 +36,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -56,7 +55,7 @@
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-image: url(:/bg1/Feature Page.png);
+       <string notr="true">border-image: url(:/bg/Feature Page.png);
 background:none;
 background-color:transparent;</string>
       </property>
@@ -67,10 +66,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>21</x>
+        <x>31</x>
         <y>124</y>
-        <width>357</width>
-        <height>83</height>
+        <width>161</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -85,10 +84,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_2">
       <property name="geometry">
        <rect>
-        <x>22</x>
-        <y>212</y>
-        <width>357</width>
-        <height>83</height>
+        <x>200</x>
+        <y>120</y>
+        <width>151</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -103,10 +102,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>19</x>
-        <y>302</y>
-        <width>357</width>
-        <height>83</height>
+        <x>40</x>
+        <y>240</y>
+        <width>151</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -121,10 +120,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_4">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>389</y>
-        <width>357</width>
-        <height>83</height>
+        <x>200</x>
+        <y>240</y>
+        <width>151</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -139,10 +138,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_5">
       <property name="geometry">
        <rect>
-        <x>19</x>
-        <y>479</y>
-        <width>357</width>
-        <height>83</height>
+        <x>40</x>
+        <y>350</y>
+        <width>151</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -157,10 +156,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_6">
       <property name="geometry">
        <rect>
-        <x>19</x>
-        <y>565</y>
-        <width>357</width>
-        <height>83</height>
+        <x>200</x>
+        <y>350</y>
+        <width>151</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -175,10 +174,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>17</x>
-        <y>653</y>
-        <width>357</width>
-        <height>83</height>
+        <x>200</x>
+        <y>460</y>
+        <width>151</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -193,10 +192,10 @@ background-color:transparent;</string>
      <widget class="QPushButton" name="pushButton_8">
       <property name="geometry">
        <rect>
-        <x>19</x>
-        <y>741</y>
-        <width>357</width>
-        <height>83</height>
+        <x>40</x>
+        <y>470</y>
+        <width>151</width>
+        <height>91</height>
        </rect>
       </property>
       <property name="styleSheet">
