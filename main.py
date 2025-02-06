@@ -19,7 +19,7 @@ from allergin.allergin import Ui
 class MainPage(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('SlideKick')
+        self.setWindowTitle('SideKlick')
         self.setFixedSize(392, 852)  # Set fixed window size to 392 x 852
 
         # Create a stacked widget to manage pages
