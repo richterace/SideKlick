@@ -16,6 +16,8 @@ from Skintip.skincare import Skin
 from calorieIn.calorieIntake import Ui
 from allergin.allergin import Ui
 
+import bcrypt
+
 class MainPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -150,9 +152,12 @@ class MainPage(QWidget):
             QMessageBox.warning(self, "Error", "Passwords do not match!")
             return
 
+        # Hash the password before storing it
+        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
         # Insert user into the database
         query = "INSERT INTO users (username, password) VALUES (%s, %s)"
-        user_data = (username, password)
+        user_data = (username, hashed_password.decode('utf-8'))  # Decode bytes to store in DB
 
         try:
             self.db_cursor.execute(query, user_data)
@@ -166,26 +171,28 @@ class MainPage(QWidget):
         username = self.login_window.userLogin.text()
         password = self.login_window.passwordLogin.text()
 
-        # Check if username and password exist in the database
-        query = "SELECT * FROM users WHERE username = %s AND password = %s"
-        user_data = (username, password)
+        # Fetch hashed password from the database
+        query = "SELECT user_id, password FROM users WHERE username = %s"
+        user_data = (username,)
 
         self.db_cursor.execute(query, user_data)
         result = self.db_cursor.fetchone()
 
         if result:
-           
-            # Set the logged-in user ID in the RecipeMain instance
-            logged_in_user_id = result[0]  # Assuming user_id is the first column in the result
-            self.recipe_window.logged_in_user_id = logged_in_user_id
-            self.calendar_window.logged_in_user_id = logged_in_user_id
-            self.dashboard_window.logged_in_user_id = logged_in_user_id
-            self.dashboard_window.update_profile_name()
-            self.show_dashboard_page()
-            # Call the load_profile_data method for the dashboard
-            self.dashboard_window.load_profile_data()
-            self.dashboard_window.load_profile_image()
-            # Proceed to dashboard or wherever needed
+            user_id, stored_hashed_password = result  # Unpack result
+
+            # Verify the password
+            if bcrypt.checkpw(password.encode('utf-8'), stored_hashed_password.encode('utf-8')):
+                # Set the logged-in user ID
+                self.recipe_window.logged_in_user_id = user_id
+                self.calendar_window.logged_in_user_id = user_id
+                self.dashboard_window.logged_in_user_id = user_id
+                self.dashboard_window.update_profile_name()
+                self.show_dashboard_page()
+                self.dashboard_window.load_profile_data()
+                self.dashboard_window.load_profile_image()
+            else:
+                QMessageBox.warning(self, "Error", "Invalid username or password!")
         else:
             QMessageBox.warning(self, "Error", "Invalid username or password!")
 
