@@ -155,52 +155,66 @@ class DashboardMain(QMainWindow):
     def save_person_info(self):
         cursor = self.db_connection.cursor()
         
-        # Retrieve selected values from QComboBoxes
-        name = str(self.nameBox.text())
-        age = str(self.ageBox.text())
-        contact = str(self.contactBox.text())
-        height = str(self.heightBox.text())
-        sex = str(self.sexBox.text())
-        weight = str(self.weightBox.text())
-        bmi = str(self.bmiBox.text())
-        bp = str(self.bloodBox.text())
-        hrate = str(self.heartBox.text())
-        clevel = str(self.cholesterolBox.text())
+        # Retrieve values from QLineEdit fields
+        name = self.nameBox.text().strip()
+        age = self.ageBox.text().strip()
+        contact = self.contactBox.text().strip()
+        height = self.heightBox.text().strip()
+        sex = self.sexBox.text().strip()
+        weight = self.weightBox.text().strip()
+        bmi = self.bmiBox.text().strip()
+        bp = self.bloodBox.text().strip()
+        hrate = self.heartBox.text().strip()
+        clevel = self.cholesterolBox.text().strip()
 
-        # You need to implement this logic based on your application
-        user_id = self.logged_in_user_id
+        user_id = self.logged_in_user_id  # Ensure user_id is valid
 
-        if user_id is not None:  # Check if user_id is not None
-            # Get the username from the QLineEdit widget
-            username_input = self.findChild(QLineEdit, "usernameBox")
-            username = username_input.text() if username_input else None
-
-            if not username:  # Check if username is empty
-                QMessageBox.warning(self, "Warning", "Username is required.")
-                return
-
-            query = "INSERT INTO user_profiles_info (user_id, name, age, contact, sex, username, height, weight, bmi, blood_pressure, heart_rate, cholesterol_level) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            row = (user_id, name, age, contact, sex, username, height, weight, bmi, bp, hrate,clevel)
-
-            cursor.execute(query, row)
-            self.db_connection.commit()
-
-            # clear the input boxes
-            self.nameBox.clear()
-            self.usernameBox.clear()
-            self.ageBox.clear()
-            self.contactBox.clear()
-            self.sexBox.clear()
-            self.heightBox.clear()
-            self.weightBox.clear()
-
-            self.bmiBox.clear()
-            self.bloodBox.clear()
-            self.heartBox.clear()
-            self.cholesterolBox.clear()
-            self.stacked_widget.setCurrentIndex(0)
-        else:
+        if user_id is None:
             QMessageBox.warning(self, "Warning", "User not logged in. Cannot save task without a valid user.")
+            return
+
+        # Get the username
+        username_input = self.findChild(QLineEdit, "usernameBox")
+        username = username_input.text().strip() if username_input else None
+
+        if not username:
+            QMessageBox.warning(self, "Warning", "Username is required.")
+            return
+
+        try:
+            # Check if username already exists
+            cursor.execute("SELECT COUNT(*) FROM user_profiles_info WHERE username = %s", (username,))
+            count = cursor.fetchone()[0]
+
+            if count > 0:
+                # If the username exists, update the record
+                update_query = """UPDATE user_profiles_info 
+                                SET name=%s, age=%s, contact=%s, sex=%s, height=%s, weight=%s, 
+                                    bmi=%s, blood_pressure=%s, heart_rate=%s, cholesterol_level=%s 
+                                WHERE username=%s"""
+                update_values = (name, age, contact, sex, height, weight, bmi, bp, hrate, clevel, username)
+                cursor.execute(update_query, update_values)
+                self.db_connection.commit()
+                QMessageBox.information(self, "Success", "Profile updated successfully!")
+            else:
+                # If username doesn't exist, insert a new record
+                insert_query = """INSERT INTO user_profiles_info 
+                                (user_id, name, age, contact, sex, username, height, weight, bmi, 
+                                blood_pressure, heart_rate, cholesterol_level) 
+                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                insert_values = (user_id, name, age, contact, sex, username, height, weight, bmi, bp, hrate, clevel)
+                cursor.execute(insert_query, insert_values)
+                self.db_connection.commit()
+                QMessageBox.information(self, "Success", "Profile saved successfully!")
+
+            # Move back to the main screen
+            self.stacked_widget.setCurrentIndex(0)
+
+        except mysql.connector.Error as err:
+            QMessageBox.critical(self, "Database Error", f"Failed to save profile: {err}")
+        
+        finally:
+            cursor.close()  # Close cursor after use
 
     def load_profile_data(self):
         if self.logged_in_user_id is None:
@@ -210,24 +224,39 @@ class DashboardMain(QMainWindow):
         cursor = self.db_connection.cursor()
 
         # Query to fetch user data based on logged-in user ID
-        query = "SELECT age, contact, sex, height,   weight, bmi, blood_pressure, heart_rate, cholesterol_level FROM user_profiles_info WHERE user_id = %s"
+        query = """SELECT name, age, contact, sex, height, weight, bmi, 
+                        blood_pressure, heart_rate, cholesterol_level, username 
+                FROM user_profiles_info WHERE user_id = %s"""
         cursor.execute(query, (self.logged_in_user_id,))
-        result = cursor.fetchone()
+        result = cursor.fetchone()  # Fetch the user profile data
 
         if result:
-            age, contact, sex, height, weight, bmi, bp, hr, cl = result
+            # Unpack the tuple
+            name, age, contact, sex, height, weight, bmi, bp, hr, cl, username = result
 
             # Set QLabel text with the fetched data
-            # self.label.setText(f"Name: {name}")
             self.ageLabel.setText(f"{int(age)}")
             self.contactLabel.setText(f"{contact}")
             self.sexLabel.setText(f"{sex}")
-            self.heightLabel.setText(f"{int(height)} cm")
-            self.weightLabel.setText(f"{int(weight)} kg")
-            self.bmiLabel.setText(f"{int(bmi)}")
+            self.heightLabel.setText(f"{height} cm")
+            self.weightLabel.setText(f"{weight} kg")
+            self.bmiLabel.setText(f"{bmi}")
             self.bpLabel.setText(f"{bp}")
             self.heartLabel.setText(f"{hr}")
             self.cholesterolLabel.setText(f"{cl}")
+
+            # Populate QLineEdit fields with fetched data
+            self.nameBox.setText(name)
+            self.ageBox.setText(str(age))
+            self.contactBox.setText(contact)
+            self.heightBox.setText(str(height))
+            self.sexBox.setText(sex)
+            self.weightBox.setText(str(weight))
+            self.bmiBox.setText(str(bmi))
+            self.bloodBox.setText(bp)
+            self.heartBox.setText(str(hr))
+            self.cholesterolBox.setText(str(cl))
+            self.usernameBox.setText(username)  # Ensure username is displayed
         else:
             QMessageBox.information(self, "Info", "No profile data found for the logged-in user.")
 
