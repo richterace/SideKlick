@@ -41,6 +41,7 @@ class DashboardMain(QMainWindow):
         self.profile_button2 = self.findChild(QPushButton, "ProfileButton_2")
         self.profile_button6 = self.findChild(QPushButton, "ProfileButton_6")
         self.setting_button = self.findChild(QPushButton, "SettingButton")
+        self.editProfButton = self.findChild(QPushButton, "editProfile")
         self.feature_button = self.findChild(QPushButton, "FeatureButton")
         self.go_to_task_button = self.findChild(QPushButton, "pushButton")
         self.save = self.findChild(QPushButton, "save")
@@ -94,6 +95,7 @@ class DashboardMain(QMainWindow):
         # Functionality of homedashboard buttons
         self.profile_button.clicked.connect(self.go_to_profile_widget)
         self.setting_button.clicked.connect(self.go_to_setting_widget)
+        self.editProfButton.clicked.connect(self.go_to_setting_widget)
         self.feature_button.clicked.connect(self.go_to_feature_widget)
 
         # Functionality of back buttons
